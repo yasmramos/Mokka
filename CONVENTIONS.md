@@ -13,9 +13,13 @@ assistant for all future work.
 
 ## Git Workflow
 
-- Default integration branch: `main`
-- Working / development branch: `develop` — all day-to-day feature work is
-  committed on `develop`.
+- Remote: `origin` -> https://github.com/yasmramos/Mokka.git
+- Integration branch: `main` (protected by convention; release-ready code only)
+- Working branch: `develop` — all day-to-day feature work is committed here and
+  pushed to `origin/develop`.
+- Feature branches: `feat/<short-name>`, `fix/<short-name>` cut from `develop`,
+  merged back into `develop` through a pull request.
+- Release flow: `develop` -> `main` via pull request when a milestone is ready.
 - Never force-push to shared branches without explicit approval.
 
 ### Commit Message Format (Conventional Commits)
@@ -76,3 +80,19 @@ chore(git): configure GitHub credentials and hooks
 The access token used during setup was shared in chat. Because it is now
 considered exposed, it should be **revoked and regenerated** at
 https://github.com/settings/tokens once the initial clone/push is completed.
+
+## Mokka Project Notes
+
+- Product: **Mokka IDE**.
+- License: Apache-2.0 (`LICENSE` at the repository root).
+- The upstream initial commit contained a Java-oriented `.gitignore`; it was
+  extended with build output, Node tooling, IDE and secret-file entries.
+- Local-only helper files are intentionally not tracked:
+  `.githooks/` (client-side commit message validation) lives in the working
+  tree and can be committed later if the team wants to share it.
+
+## Toolchain Defaults
+
+- Code, comments, docstrings, commit messages, documentation: English only.
+- Every commit goes through the Conventional Commits hook before it is accepted.
+- Push target while developing: `origin develop`.
